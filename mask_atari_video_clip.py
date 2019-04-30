@@ -25,7 +25,7 @@ def crop_video(video_filename):
     print("cropping", video_filename)
     video = VideoFileClip(video_filename + ".mp4")
     cropped = video.crop(y1=15)
-    cropped.write_videofile(video_filename + "_crop.mp4", fps=40)
+    cropped.write_videofile(video_filename + "_crop.mp4", verbose=False,ffmpeg_params=['-y'],progress_bar=False)
         
 
 env_name = "breakout"
