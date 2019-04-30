@@ -24,8 +24,8 @@ def get_videonames(env_name):
 def crop_video(video_filename):
     print("cropping", video_filename)
     video = VideoFileClip(video_filename + ".mp4")
-    cropped = video.crop(y1=15)
-    cropped.write_videofile(video_filename + "_crop.mp4")
+    cropped = video.crop(y1=17)
+    cropped.write_videofile(video_filename + "_crop.webm")
         
 
 env_name = "breakout"
