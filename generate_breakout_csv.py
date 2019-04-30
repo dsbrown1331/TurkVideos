@@ -17,7 +17,7 @@ for c in range(checkpoint_min, checkpoint_max + checkpoint_step, checkpoint_step
     elif c < 1000:
         checkpoint = "0" + str(c)
         
-    video_list.append("{}{}_{}.mp4".format(video_repo, env_name, checkpoint))
+    video_list.append("{}{}_{}_crop.webm".format(video_repo, env_name, checkpoint))
    
 #write to csv file for uploading to MTurk
 writer = open("input" + env_name + "_pref_mturk.csv", "w")
