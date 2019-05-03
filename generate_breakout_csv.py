@@ -5,7 +5,7 @@ checkpoint_step = 50
 env_name = "breakout"
 video_list = []
 
-video_repo = "https://raw.githubusercontent.com/dsbrown1331/TurkVideos/master/"
+video_repo = "https://raw.githubusercontent.com/dsbrown1331/TurkVideos/master/"+env_name + "/"
 
 for c in range(checkpoint_min, checkpoint_max + checkpoint_step, checkpoint_step):
     if c < 10:

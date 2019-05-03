@@ -172,7 +172,7 @@ if __name__=="__main__":
     pos_accuracy, neg_accuracy = evaluate_accuracy_majority(checkpoints_to_scores, ranking_dict)
     print("% correct = ", pos_accuracy)
     print("% incorrect = ", neg_accuracy)
-    print("% not sure = ", 1 - pos_accuracy - neg_accuracy)
+   
     
     
 

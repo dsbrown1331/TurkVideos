@@ -4,8 +4,8 @@ from moviepy.editor import *
 #print(clip)
 
 
-video = VideoFileClip("breakout_00500.mp4")
-cropped = video.crop(y1=15)
+video = VideoFileClip("enduro/enduro_03100.mp4")
+cropped = video.crop(y2=160)
 cropped.write_videofile("crop_test.mp4", fps=30)
 
 # Make the text. Many more options are available.
