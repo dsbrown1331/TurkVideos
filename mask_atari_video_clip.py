@@ -17,7 +17,7 @@ def get_videonames(env_name):
         elif c < 1000:
             checkpoint = "0" + str(c)
         #add video file to list of videos to crop
-        videos_to_crop.append(env_name + "_" + checkpoint)
+        videos_to_crop.append(env_name + "/" + env_name + "_" + checkpoint)
     
     return videos_to_crop
     
