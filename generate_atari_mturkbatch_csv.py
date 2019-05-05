@@ -28,13 +28,13 @@ for c in range(checkpoint_min, checkpoint_max + checkpoint_step, checkpoint_step
         checkpoint = "000" + str(c)
     elif c < 1000:
         checkpoint = "00" + str(c)
-    elif c < 1000:
+    elif c < 10000:
         checkpoint = "0" + str(c)
         
     video_list.append("{}{}_{}_crop.webm".format(video_repo, env_name, checkpoint))
    
 #write to csv file for uploading to MTurk
-writer = open("input" + env_name + "_pref_mturk.csv", "w")
+writer = open("input_" + env_name + "_pref_mturk.csv", "w")
 #write variable labels in first row
 writer.write("{},{}\n".format("video_url_A","video_url_B"))
 

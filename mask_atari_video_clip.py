@@ -22,8 +22,10 @@ def get_videonames(env_name):
             checkpoint = "000" + str(c)
         elif c < 1000:
             checkpoint = "00" + str(c)
-        elif c < 1000:
+        elif c < 10000:
             checkpoint = "0" + str(c)
+        else:
+            checkpoint = str(c)
         #add video file to list of videos to crop
         videos_to_crop.append(env_name + "/" + env_name + "_" + checkpoint)
     
@@ -38,6 +40,17 @@ def crop_video(video_filename, env_name):
         cropped = video.crop(y1=40, y2=180)
     elif env_name == "enduro":
         cropped = video.crop(y2=160)
+    elif env_name == "hero":
+        cropped = video.crop(y2=135)
+    elif env_name == "pong":
+        cropped = video.crop(y1=30)
+    elif env_name == "qbert":
+        cropped = video.crop(y1=28)
+    elif env_name == "seaquest":
+        cropped = video.crop(y1=30, y2=160)
+    elif env_name == "spaceinvaders":
+        cropped = video.crop(y1=30, y2=196)
+   
     cropped.write_videofile(video_filename + "_crop.webm")
         
 
