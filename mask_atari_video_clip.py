@@ -1,4 +1,5 @@
 from moviepy.editor import *
+import argparse
 
 #python code to create csv file for MTurk
 def get_videonames(env_name):
@@ -40,7 +41,12 @@ def crop_video(video_filename, env_name):
     cropped.write_videofile(video_filename + "_crop.webm")
         
 
-env_name = "beamrider"
+
+parser = argparse.ArgumentParser(description=None)
+parser.add_argument('--env_name', default='', help='Select the environment name to run, i.e. pong')
+args = parser.parse_args()
+env_name = args.env_name
+
 videos_to_crop = get_videonames(env_name)
 for v in videos_to_crop:
     crop_video(v, env_name)
