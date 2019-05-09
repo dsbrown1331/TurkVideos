@@ -90,11 +90,11 @@ def evaluate_accuracy(checkpoint_to_scores, ranking_dict):
     
 #evaluate Turker accuracy
 def evaluate_accuracy_majority(checkpoint_to_scores, ranking_dict):
-    #use the ground truth returns from checkpont_to_scores to evalute the acuracy of MTurk
     correct = 0
     incorrect = 0
     #keep a dictionary of checkpoints and labels to parse to get majority votes
     vote_dict = {}
+    human_rankings = [] #keep list of tuples (notprefA, preferB, label, scoreA, scoreB)
     for r, label in ranking_dict:
         print("-"*10)
         #find scores
@@ -148,6 +148,7 @@ def evaluate_accuracy_majority(checkpoint_to_scores, ranking_dict):
         else:
             count += 1
             print(pair, vote_dict[pair])
+            human_rankings.append((pair[0], pair[1], maj_vote_idxs[0], checkpoint_to_scores[pair[0]], checkpoint_to_scores[pair[1]]))
             #check if correct, by design answer B is always correct
             if maj_vote_idxs[0] == 1:
                 correct += 1
@@ -155,7 +156,9 @@ def evaluate_accuracy_majority(checkpoint_to_scores, ranking_dict):
                 incorrect += 1
                 
             
-    return correct / count, incorrect / count
+    return correct / count, incorrect / count, human_rankings
+
+    
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description=None)
@@ -169,9 +172,16 @@ if __name__=="__main__":
     checkpoints_to_scores = parse_checkpoint_to_scores(checkpoint_filename)
     ranking_dict = parse_turk_responses(turk_batch_filename, env_name)
     print(ranking_dict)
-    pos_accuracy, neg_accuracy = evaluate_accuracy_majority(checkpoints_to_scores, ranking_dict)
+    pos_accuracy, neg_accuracy, human_rankings = evaluate_accuracy_majority(checkpoints_to_scores, ranking_dict)
     print("% correct = ", pos_accuracy)
     print("% incorrect = ", neg_accuracy)
+    
+    print("writing human rankings out to a file")
+    file_writer = open(env_name + "_human_rankings.csv",'w')
+    file_writer.write("A,B,label,scoreA,scoreB\n")
+    for r in human_rankings:
+        file_writer.write("{},{},{},{},{}\n".format(r[0],r[1],r[2],r[3],r[4]))
+    file_writer.close()
    
     
     
